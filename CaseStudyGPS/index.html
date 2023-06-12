@@ -25,14 +25,18 @@
   <script>
     // Initialize Firebase
     var firebaseConfig = {
-      apiKey: "your-api-key",
-      authDomain: "your-project.firebaseapp.com",
+      apiKey: "AIzaSyDPTJIyyUkkcZxOqG9hIC9bJzASmieqZJs",
+      authDomain: "casestudy-gps.firebaseapp.com",
       databaseURL: "https://your-project.firebaseio.com",
-      projectId: "your-project",
-      storageBucket: "your-project.appspot.com",
-      messagingSenderId: "your-messaging-sender-id",
-      appId: "your-app-id"
+      projectId: "casestudy-gps",
+      storageBucket: "casestudy-gps.appspot.com",
+      messagingSenderId: "66895443108",
+      appId: "1:66895443108:web:4809eb1a17becc4033a231"
     };
+
+    // Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
     firebase.initializeApp(firebaseConfig);
 

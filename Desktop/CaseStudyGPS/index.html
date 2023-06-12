@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GPS Tracker</title>
+  <style>
+    /* CSS styles for the location display */
+    #latitude, #longitude {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Current Location</h1>
+  <div id="location">
+    <p>Latitude: <span id="latitude"></span></p>
+    <p>Longitude: <span id="longitude"></span></p>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"></script>
+
+  <script>
+    // Initialize Firebase
+    var firebaseConfig = {
+      apiKey: "your-api-key",
+      authDomain: "your-project.firebaseapp.com",
+      databaseURL: "https://your-project.firebaseio.com",
+      projectId: "your-project",
+      storageBucket: "your-project.appspot.com",
+      messagingSenderId: "your-messaging-sender-id",
+      appId: "your-app-id"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    // Reference to the GPS data in Firebase
+    var gpsDataRef = firebase.database().ref('gps-data');
+
+    // Listen for changes in the GPS data
+    gpsDataRef.on('value', function(snapshot) {
+      var gpsData = snapshot.val();
+      // Update the UI with the current location
+      document.getElementById('latitude').textContent = gpsData.latitude;
+      document.getElementById('longitude').textContent = gpsData.longitude;
+    });
+  </script>
+</body>
+</html>

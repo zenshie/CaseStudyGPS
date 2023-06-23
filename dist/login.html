@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>༊*·˚Login</title>
+  <link rel="stylesheet" href="./css/loginstyle.css">
+  <script defer src="./bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+  <!-- Bootstrap theme -->
+</head>
+<body style="background: linear-gradient(to bottom, #0A4D68, #088395);">
+  <section>
+    <div class="box"> 
+        <div class="square" style="--i:0;"></div>
+        <div class="square" style="--i:1;"></div>
+        <div class="square" style="--i:2;"></div>
+        <div class="square" style="--i:3;"></div>
+        <div class="square" style="--i:4;"></div>
+        <div class="container">
+            <div class="form">
+              <h2>Admin Login.</h2>	
+                <form name="login_form" id="login_form" method="post" action="#" enctype="multipart/form-data" >
+                    <div class="inputBox">     
+                      <input type="text" name="login_email" id="login_email" class="form-control" placeholder="admin email">
+                    </div>
+                    <div class="inputBox">
+                      <input type="password" name="login_password" id="login_password" class="form-control"  placeholder="admin password">
+                    </div>
+                    <div class="inputBox">
+                      <button type="button" id="login" name="login" class="btn btn-success">Login</button>
+                    </div>
+                    <p class="forget">Wrong click ? <a href="index.html">Go back</a></p>
+                </form>
+            </div>	
+          </div>
+    </div>
+  </section>
+  <script src="./js/app.js" type="module"></script>
+  <script src="./js/login.js" type="module"></script>
+
+</body>
+</html>

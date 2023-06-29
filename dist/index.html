@@ -20,15 +20,15 @@
   </div>
 
   <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js"></script>
 
   <script>
     // Initialize Firebase
     var firebaseConfig = {
       apiKey: "AIzaSyDPTJIyyUkkcZxOqG9hIC9bJzASmieqZJs",
       authDomain: "casestudy-gps.firebaseapp.com",
-      databaseURL: "https://your-project.firebaseio.com",
       projectId: "casestudy-gps",
       storageBucket: "casestudy-gps.appspot.com",
       messagingSenderId: "66895443108",
@@ -36,10 +36,11 @@
     };
 
     // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
 
-    firebase.initializeApp(firebaseConfig);
+   // firebase.initializeApp(firebaseConfig);
 
     // Reference to the GPS data in Firebase
     var gpsDataRef = firebase.database().ref('gps-data');

@@ -9,13 +9,14 @@ import { getFirestore, collection, addDoc, getDocs  } from "https://www.gstatic.
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAnaFRqleoDNpz61gbFyTuuuWLLra1QJU4",
-  authDomain: "coviddata-ff21d.firebaseapp.com",
-  projectId: "coviddata-ff21d",
-  storageBucket: "coviddata-ff21d.appspot.com",
-  messagingSenderId: "669024748294",
-  appId: "1:669024748294:web:a48f05cadf5d40324b1487",
-  measurementId: "G-2R5ZX8GRSL"
+  apiKey: "AIzaSyDPTJIyyUkkcZxOqG9hIC9bJzASmieqZJs",
+  authDomain: "casestudy-gps.firebaseapp.com",
+  databaseURL: "https://casestudy-gps-default-rtdb.firebaseio.com",
+  projectId: "casestudy-gps",
+  storageBucket: "casestudy-gps.appspot.com",
+  messagingSenderId: "66895443108",
+  appId: "1:66895443108:web:4809eb1a17becc4033a231",
+  measurementId: "G-DKSMF05CKQ"
 };
  
  // Initialize Firebase

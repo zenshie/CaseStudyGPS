@@ -9,13 +9,14 @@ import { getAuth,
   from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
 
   const firebaseConfig = {
-    apiKey: "AIzaSyCzf803qRjCMmK9wGhzPs68WLUZKr-M42M",
-    authDomain: "casestudy-1c77a.firebaseapp.com",
-    projectId: "casestudy-1c77a",
-    storageBucket: "casestudy-1c77a.appspot.com",
-    messagingSenderId: "743404711750",
-    appId: "1:743404711750:web:fffdbd353973f645397f47",
-    measurementId: "G-YX6H49NVFB"
+    apiKey: "AIzaSyDPTJIyyUkkcZxOqG9hIC9bJzASmieqZJs",
+    authDomain: "casestudy-gps.firebaseapp.com",
+    databaseURL: "https://casestudy-gps-default-rtdb.firebaseio.com",
+    projectId: "casestudy-gps",
+    storageBucket: "casestudy-gps.appspot.com",
+    messagingSenderId: "66895443108",
+    appId: "1:66895443108:web:4809eb1a17becc4033a231",
+    measurementId: "G-DKSMF05CKQ"
   };
 
 const app = initializeApp(firebaseConfig);

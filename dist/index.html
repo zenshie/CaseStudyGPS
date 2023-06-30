@@ -1,57 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GPS Tracker</title>
-  <script defer src="/dist/bundle.js"></script>
-  <style>
-    /* CSS styles for the location display */
-    #latitude, #longitude {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-  </style>
+    <meta charset="utf-8">
+    <title>GPS Map and Graph</title>
+	<script defer src="/dist/bundle.js"></script>
+    <style>
+        #map {
+            height: 800px;
+            width: 100%;
+        }
+
+        #graph {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 </head>
 <body>
-  <h1>Current Location</h1>
-  <div id="location">
-    <p>Latitude: <span id="latitude"></span></p>
-    <p>Longitude: <span id="longitude"></span></p>
-  </div>
+    <div id="map"></div>
+    <div><button id="start" name="start">Start</button></div>
+    <div><button id="stop" name="stop">Stop</button></div>
+    
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js"></script>
 
-  <script>
-    // Initialize Firebase
-    var firebaseConfig = {
-      apiKey: "AIzaSyDPTJIyyUkkcZxOqG9hIC9bJzASmieqZJs",
-      authDomain: "casestudy-gps.firebaseapp.com",
-      projectId: "casestudy-gps",
-      storageBucket: "casestudy-gps.appspot.com",
-      messagingSenderId: "66895443108",
-      appId: "1:66895443108:web:4809eb1a17becc4033a231"
-    };
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app);
 
-   // firebase.initializeApp(firebaseConfig);
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, onSnapshot  } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
+        // Initialize Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyDPTJIyyUkkcZxOqG9hIC9bJzASmieqZJs",
+            authDomain: "casestudy-gps.firebaseapp.com",
+            databaseURL: "https://casestudy-gps-default-rtdb.firebaseio.com",
+            projectId: "casestudy-gps",
+            storageBucket: "casestudy-gps.appspot.com",
+            messagingSenderId: "66895443108",
+            appId: "1:66895443108:web:4809eb1a17becc4033a231",
+            measurementId: "G-DKSMF05CKQ"
+        };
 
-    // Reference to the GPS data in Firebase
-    var gpsDataRef = firebase.database().ref('gps-data');
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        console.log(app);
 
-    // Listen for changes in the GPS data
-    gpsDataRef.on('value', function(snapshot) {
-      var gpsData = snapshot.val();
-      // Update the UI with the current location
-      document.getElementById('latitude').textContent = gpsData.latitude;
-      document.getElementById('longitude').textContent = gpsData.longitude;
-    });
-  </script>
+        let latitude = 8.2398;
+        let longitude = 124.2448;
+
+        const dataRef = collection(db, "locations");
+        const q = query(dataRef, orderBy("currentTime", "desc"), limit(1));
+
+        let querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {            
+                latitude = doc.data().latitude;
+                longitude = doc.data().longitude;
+                console.log("latitude:",latitude);
+                console.log("longitude",longitude);
+            });
+
+        var map = L.map('map').setView([latitude, longitude], 17);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18
+            }).addTo(map);       
+           
+            
+           
+            
+            var marker = L.marker([latitude, longitude]).addTo(map);
+
+            var isStopped = false;
+
+            document.getElementById("start").addEventListener("click", function() {
+                startProc();
+            });
+
+            document.getElementById("stop").addEventListener("click", function() {
+                stopProc();
+            });
+
+                 
+
+             async function startProc() {                
+                while (!isStopped) {
+                    console.log("isStopped:", isStopped);
+                    let querySnapshot = await getDocs(q);
+                    querySnapshot.forEach((doc) => {            
+                        latitude = doc.data().latitude;
+                        longitude = doc.data().longitude;
+                        console.log("latitude:",latitude);
+                        console.log("longitude",longitude);
+                    }); 
+
+                    map.removeLayer(marker);
+                    marker = L.marker([latitude, longitude]).addTo(map);
+                 
+                    
+
+                } 
+            }
+
+            function stopProc() {
+                isStopped = true;
+                console.log("isStopped is stopping:", isStopped);
+            }
+           
+
+            map.on("click", function(e){
+                console.log("lat:", e.latlng.lat);
+                console.log("long:", e.latlng.lng);                
+                new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+            })
+          
+    </script>
 </body>
 </html>

@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+body {
+    overflow: hidden;
+    background: linear-gradient(to bottom, #0A4D68, #088395);
+    /*background-image: url('/dist/assets/images/hero-bg.jpg');*/
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+section .color {
+    position: absolute;
+    filter: blur(150px);
+}
+
+h5 {
+    color: #fff;
+}
+
+p {
+    color:#fff
+}
+
+.box {
+    position: relative;
+}
+
+.box .square {
+    position: absolute;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px; /*border radius sa smol square*/
+    animation: animate 10s linear infinite;
+    animation-delay: calc(-1s * var(--i)); /*lahi lahi ug slides direction ang animation sa square*/
+}
+
+@keyframes animate {
+    0%, 100% {
+        transform: translateY(-40px); /*u can change Y to X or nah*/
+    }
+    50% {
+        transform: translateY(40px); /*u can change Y to X or nah*/
+    }
+}
+
+.box .square:nth-child(1) { /*that smol square on the upper right*/
+    top: -50px;
+    right: -60px;
+    width: 100px;
+    height: 100px;
+}
+
+.box .square:nth-child(2) { /*that smol square on the center left*/
+    top: 150px;
+    left: -100px;
+    width: 120px;
+    height: 120px;
+    z-index: 2; /*mabutang ang square sa front, if butngan ug px ang 2 ma behind ang square*/
+}
+
+.box .square:nth-child(3) { /*that smol square on the lower right*/
+    bottom: 50px;
+    right: -60px;
+    width: 80px;
+    height: 80px;
+    z-index: 2; /*mabutang ang square sa front, if butngan ug px ang 2 ma behind ang square*/
+}
+
+.box .square:nth-child(4) { /*that smol square on the bottom*/
+    bottom: -80px;
+    left: 100px;
+    width: 50px;
+    height: 50px;
+}
+
+.box .square:nth-child(5) { /*that smol square on the top*/
+    top: -80px;
+    left: 140px;
+    width: 60px;
+    height: 60px;
+}
+
+.container {
+    position: relative;
+    width: 500px;
+    min-height: 500px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.rec {
+    position: relative;
+    min-width: 500px;
+    min-height: 500px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.form {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding:50px;
+}
+
+.form h2 {
+    position: relative;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+}
+
+.form h2::before { /*that one line below the login form*/
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 80px;
+    height: 4px;
+    background: #fff;
+}
+
+.form .inputBox {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form .inputBox input {
+    width: 100%;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.form .inputBox input::placeholder {
+    color: #fff;
+}
+
+.form .inputBox input[type="submit"] {
+    background: #fff;
+    color: #666;
+    max-width: 180px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* for register button*/
+.form .inputBox button {
+    width: 100%;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.form .inputBox button::placeholder {
+    color: #fff;
+}
+
+.form .inputBox button[type="button"] {
+    background: #fff;
+    color: #666;
+    max-width: 180px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+/*register button end*/
+
+.forget {
+    margin-top: 5px;
+    color: #fff;
+}
+
+.forget a {
+    color: #fff;
+    font-weight: 600;
+}
+
+
+/* FOR SOCIALS  
+
+p {
+    color: #c09df4e4;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icon-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-bottom: 2px;
+    color: #6105eb;
+    border-radius: 100%;
+    margin-top: 2vmin;
+    background: rgba(255, 255, 255, 0.358);
+}
+*/
+
+
+h2 {
+    text-align: center;
+    padding: 20px 0;
+    color: #fff;
+  }
+  
+
+  .p {
+    text-align: center;
+    padding-top: 140px;
+    font-size: 14px;
+  }
+
+  .row {
+    padding: 10px;
+  }
+
+  .table-data{
+    padding-top: 50px;
+    width:800px;
+    height:600px;
+    overflow: auto;
+   }
+
